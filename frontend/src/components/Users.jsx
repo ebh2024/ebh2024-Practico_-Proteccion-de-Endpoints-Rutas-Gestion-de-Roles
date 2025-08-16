@@ -9,7 +9,7 @@ import { Card } from 'primereact/card';
 
 const Users = ({ toast }) => {
   const [users, setUsers] = useState([]);
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   const [globalFilter, setGlobalFilter] = useState('');
   const decodedToken = token ? jwtDecode(token) : null;
   const isAdmin = decodedToken && decodedToken.role === 'admin';
@@ -76,9 +76,9 @@ const Users = ({ toast }) => {
 
   const header = (
     <div className="table-header">
-      <span className="p-input-icon-left">
+      <span className="p-input-icon-left w-full">
         <i className="pi pi-search" />
-        <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
+        <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." className="w-full" />
       </span>
     </div>
   );

@@ -14,7 +14,7 @@ const Products = ({ toast }) => {
   const [globalFilter, setGlobalFilter] = useState('');
   const navigate = useNavigate();
 
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   const user = token ? jwtDecode(token) : null;
 
   const showToast = (severity, summary, detail) => {

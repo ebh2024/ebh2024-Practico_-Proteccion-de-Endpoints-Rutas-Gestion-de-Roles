@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import { Card } from 'primereact/card';
 
 const Home = () => {
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
 
   if (token) {
     try {
@@ -12,7 +12,7 @@ const Home = () => {
       return <Navigate to="/products" />;
     } catch (error) {
       console.error("Invalid token:", error);
-      localStorage.removeItem('token');
+      sessionStorage.removeItem('token');
       return <Navigate to="/login" />;
     }
   }

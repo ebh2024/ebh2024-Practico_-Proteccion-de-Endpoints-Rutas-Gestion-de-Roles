@@ -9,7 +9,7 @@ import { Card } from 'primereact/card';
 const CreateProduct = ({ toast }) => {
   const [newProduct, setNewProduct] = useState({ name: '', description: '', price: '' });
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
 
   const showToast = (severity, summary, detail) => {
     toast.current.show({ severity, summary, detail, life: 3000 });

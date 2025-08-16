@@ -2,9 +2,10 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import { Badge } from 'primereact/badge';
+import { Menubar } from 'primereact/menubar';
 
 const Navbar = () => {
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   const navigate = useNavigate();
   let user = null;
 
@@ -13,44 +14,61 @@ const Navbar = () => {
       user = jwtDecode(token);
     } catch (error) {
       console.error("Invalid token:", error);
-      localStorage.removeItem('token');
+      sessionStorage.removeItem('token');
     }
   }
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     navigate('/login');
   };
 
+  const items = [
+    {
+      label: 'Inicio',
+      icon: 'pi pi-fw pi-home',
+      command: () => navigate('/')
+    },
+    ...(user ? [
+      {
+        label: 'Productos',
+        icon: 'pi pi-fw pi-shopping-cart',
+        command: () => navigate('/products')
+      },
+      {
+        label: 'Usuarios',
+        icon: 'pi pi-fw pi-users',
+        command: () => navigate('/users')
+      }
+    ] : []),
+    ...(!user ? [
+      {
+        label: 'Login',
+        icon: 'pi pi-fw pi-sign-in',
+        command: () => navigate('/login')
+      },
+      {
+        label: 'Register',
+        icon: 'pi pi-fw pi-user-plus',
+        command: () => navigate('/register')
+      }
+    ] : [])
+  ];
+
+  const end = (
+    <div className="flex align-items-center">
+      {user && (
+        <>
+          <span className="mr-2">{user.name}</span>
+          <Badge value={user.role} severity={user.role === 'admin' ? 'danger' : user.role === 'moderator' ? 'warning' : 'info'} />
+          <button onClick={handleLogout} className="p-button p-button-danger ml-2">Logout</button>
+        </>
+      )}
+    </div>
+  );
+
   return (
-    <nav className="navbar flex justify-content-between align-items-center">
-      <div className="flex align-items-center">
-        <Link to="/" className="navbar-brand">Mi App</Link>
-        <ul className="navbar-nav flex align-items-center">
-          <li className="navbar-item"><Link to="/" className="navbar-link">Inicio</Link></li>
-          {user && <li className="navbar-item"><Link to="/products" className="navbar-link">Productos</Link></li>}
-          {user && <li className="navbar-item"><Link to="/users" className="navbar-link">Usuarios</Link></li>}
-        </ul>
-      </div>
-      <div className="flex align-items-center">
-        <ul className="navbar-nav flex align-items-center">
-          {user ? (
-            <>
-              <li className="navbar-item user-info">
-                <span>{user.name} </span>
-                <Badge value={user.role} severity={user.role === 'admin' ? 'danger' : user.role === 'moderator' ? 'warning' : 'info'}></Badge>
-              </li>
-              <li className="navbar-item"><button onClick={handleLogout} className="navbar-link navbar-button">Logout</button></li>
-            </>
-          ) : (
-            <>
-              <li className="navbar-item"><Link to="/login" className="navbar-link">Login</Link></li>
-              <li className="navbar-item"><Link to="/register" className="navbar-link">Register</Link></li>
-            </>
-          )}
-        </ul>
-      </div>
-    </nav>
+    <Menubar model={items} end={end} />
   );
 };
 

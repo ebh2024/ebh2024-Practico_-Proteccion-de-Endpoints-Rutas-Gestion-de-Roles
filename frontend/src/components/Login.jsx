@@ -18,7 +18,7 @@ const Login = ({ toast }) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3000/auth/login', { username, password });
-      localStorage.setItem('token', response.data.accessToken);
+      sessionStorage.setItem('token', response.data.accessToken);
       showToast('success', 'Login Exitoso', 'Has iniciado sesión correctamente.');
       setTimeout(() => navigate('/products'), 1000);
     } catch (error) {
