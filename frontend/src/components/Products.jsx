@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { jwtDecode } from 'jwt-decode';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Card } from 'primereact/card';
@@ -27,9 +27,7 @@ const Products = ({ toast }) => {
         showToast('error', 'Error de Autenticación', 'Debes iniciar sesión para ver los productos.');
         return;
       }
-      const response = await axios.get('http://localhost:3000/products', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const response = await api.get('/products');
       setProducts(response.data);
     } catch (error) {
       showToast('error', 'Error al Cargar Productos', error.response?.data?.message || 'Fallo al cargar los productos.');
@@ -42,9 +40,7 @@ const Products = ({ toast }) => {
 
   const handleUpdate = async (id) => {
     try {
-      await axios.put(`http://localhost:3000/products/${id}`, editingProduct, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      await api.put(`/products/${id}`, editingProduct);
       setEditingProduct(null);
       fetchProducts();
       showToast('success', 'Producto Actualizado', 'Producto actualizado correctamente.');
@@ -60,9 +56,7 @@ const Products = ({ toast }) => {
       icon: 'pi pi-exclamation-triangle',
       accept: async () => {
         try {
-          await axios.delete(`http://localhost:3000/products/${id}`, {
-            headers: { Authorization: `Bearer ${token}` }
-          });
+          await api.delete(`/products/${id}`);
           fetchProducts();
           showToast('success', 'Producto Eliminado', 'Producto eliminado correctamente.');
         } catch (error) {

@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
 
   try {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      const accessToken = jwt.sign({ username: user.username, role: user.role }, 'secretkey');
+      const accessToken = jwt.sign({ username: user.username, role: user.role }, process.env.JWT_SECRET);
       res.json({ accessToken: accessToken });
     } else {
       res.send('Contraseña incorrecta');

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
-import axios from 'axios';
+import api from '../api';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Dropdown } from 'primereact/dropdown';
@@ -24,11 +24,7 @@ const Users = ({ toast }) => {
         showToast('error', 'Acceso Denegado', 'No tienes privilegios administrativos para ver usuarios.');
         return;
       }
-      const response = await axios.get('http://localhost:3000/users', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await api.get('/users');
       setUsers(response.data);
     } catch (error) {
       showToast('error', 'Error al Cargar Usuarios', error.response?.data?.message || 'Fallo al cargar los usuarios.');
@@ -41,12 +37,7 @@ const Users = ({ toast }) => {
 
   const handleRoleChange = async (userId, newRole) => {
     try {
-      await axios.put(`http://localhost:3000/users/${userId}/role`, { role: newRole }, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      await api.put(`/users/${userId}/role`, { role: newRole });
       setUsers(users.map(user => user.id === userId ? { ...user, role: newRole } : user));
       showToast('success', 'Rol Actualizado', 'Rol de usuario actualizado correctamente.');
     } catch (error) {

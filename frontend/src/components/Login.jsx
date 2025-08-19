@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useNavigate } from 'react-router-dom';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
@@ -17,7 +17,7 @@ const Login = ({ toast }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/auth/login', { username, password });
+      const response = await api.post('/auth/login', { username, password });
       sessionStorage.setItem('token', response.data.accessToken);
       showToast('success', 'Login Exitoso', 'Has iniciado sesión correctamente.');
       setTimeout(() => navigate('/products'), 1000);
