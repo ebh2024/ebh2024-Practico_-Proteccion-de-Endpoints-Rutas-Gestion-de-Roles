@@ -44,9 +44,9 @@ const CreateProduct = ({ toast }) => {
             <label htmlFor="price">Price</label>
             <InputNumber id="price" value={newProduct.price} onValueChange={(e) => setNewProduct({ ...newProduct, price: e.value })} mode="currency" currency="USD" locale="en-US" required />
           </div>
-          <div className="flex justify-content-between mt-4">
+          <div className="flex justify-content-end mt-4">
+            <Button type="button" label="Cancel" className="p-button-secondary mr-2" onClick={() => navigate('/products')} />
             <Button type="submit" label="Create Product" className="p-button-primary" />
-            <Button type="button" label="Cancel" className="p-button-secondary" onClick={() => navigate('/products')} />
           </div>
         </form>
       </Card>

@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
+import { Divider } from 'primereact/divider';
+import { Link } from 'react-router-dom';
 
 const Login = ({ toast }) => {
   const [username, setUsername] = useState('');
@@ -40,8 +42,16 @@ const Login = ({ toast }) => {
               <InputText id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
           </div>
-          <Button type="submit" label="Login" className="p-button-primary mt-4" />
+          <Button type="submit" label="Log In" className="p-button-primary mt-4 w-full" />
         </form>
+        <Divider align="center">
+          <span className="p-text-secondary">OR</span>
+        </Divider>
+        <div className="text-center">
+          <Link to="/register">
+            <Button label="Create New Account" className="p-button-success" style={{ backgroundColor: '#42b72a', borderColor: '#42b72a' }} />
+          </Link>
+        </div>
       </Card>
     </div>
   );

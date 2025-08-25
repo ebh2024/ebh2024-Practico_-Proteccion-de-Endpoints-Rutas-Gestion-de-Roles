@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
+import { Divider } from 'primereact/divider';
+import { Link } from 'react-router-dom';
 
 const Register = ({ toast }) => {
   const [username, setUsername] = useState('');
@@ -39,8 +41,16 @@ const Register = ({ toast }) => {
               <InputText id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
           </div>
-          <Button type="submit" label="Register" className="p-button-primary mt-4" />
+          <Button type="submit" label="Sign Up" className="p-button-primary mt-4 w-full" />
         </form>
+        <Divider align="center">
+          <span className="p-text-secondary">OR</span>
+        </Divider>
+        <div className="text-center">
+          <Link to="/login">
+            <Button label="Already have an account?" className="p-button-secondary" />
+          </Link>
+        </div>
       </Card>
     </div>
   );

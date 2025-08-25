@@ -6,6 +6,7 @@ import { Column } from 'primereact/column';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Card } from 'primereact/card';
+import { Button } from 'primereact/button';
 
 const Users = ({ toast }) => {
   const [users, setUsers] = useState([]);
@@ -76,8 +77,11 @@ const Users = ({ toast }) => {
 
   return (
     <div className="p-4">
-      <Card title="User Management">
-        <DataTable value={users} paginator rows={10} header={header} globalFilter={globalFilter}>
+      <div className="flex justify-content-between align-items-center mb-4">
+        <h2 className="text-2xl font-bold">User Management</h2>
+      </div>
+      <Card className="p-card">
+        <DataTable value={users} paginator rows={10} header={header} globalFilter={globalFilter} emptyMessage="No users found.">
           <Column field="id" header="ID" sortable />
           <Column field="username" header="Username" sortable />
           <Column field="role" header="Role" body={roleEditor} />
