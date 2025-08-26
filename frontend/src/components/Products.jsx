@@ -74,8 +74,8 @@ const Products = ({ toast }) => {
 
   const productDialogFooter = (
     <>
-      <Button label="Cancel" icon="pi pi-times" className="p-button-text" onClick={() => setEditingProduct(null)} />
-      <Button label="Save" icon="pi pi-check" className="p-button-text" onClick={() => handleUpdate(editingProduct.id)} />
+      <Button label="Cancelar" icon="pi pi-times" className="p-button-text" onClick={() => setEditingProduct(null)} />
+      <Button label="Guardar" icon="pi pi-check" className="p-button-text" onClick={() => handleUpdate(editingProduct.id)} />
     </>
   );
 
@@ -83,19 +83,19 @@ const Products = ({ toast }) => {
     <div className="p-4">
       <ConfirmDialog />
 
-      <Dialog visible={!!editingProduct} style={{ width: '450px' }} header="Edit Product" modal className="p-fluid" footer={productDialogFooter} onHide={() => setEditingProduct(null)}>
+      <Dialog visible={!!editingProduct} style={{ width: '450px' }} header="Editar Producto" modal className="p-fluid" footer={productDialogFooter} onHide={() => setEditingProduct(null)}>
         {editingProduct && (
           <div className="p-fluid">
             <div className="field">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">Nombre</label>
               <InputText id="name" value={editingProduct.name} onChange={(e) => setEditingProduct({ ...editingProduct, name: e.target.value })} required autoFocus />
             </div>
             <div className="field">
-              <label htmlFor="description">Description</label>
+              <label htmlFor="description">Descripción</label>
               <InputText id="description" value={editingProduct.description} onChange={(e) => setEditingProduct({ ...editingProduct, description: e.target.value })} required />
             </div>
             <div className="field">
-              <label htmlFor="price">Price</label>
+              <label htmlFor="price">Precio</label>
               <InputNumber id="price" value={editingProduct.price} onValueChange={(e) => setEditingProduct({ ...editingProduct, price: e.value })} mode="currency" currency="USD" locale="en-US" required />
             </div>
           </div>
@@ -103,9 +103,9 @@ const Products = ({ toast }) => {
       </Dialog>
 
       <div className="flex justify-content-between align-items-center mb-4">
-        <h2 className="text-2xl font-bold">Products</h2>
+        <h2 className="text-2xl font-bold">Productos</h2>
         {user && user.role === 'admin' && (
-          <Button label="Create Product" icon="pi pi-plus" onClick={() => navigate('/products/create')} className="p-button-primary" />
+          <Button label="Crear Producto" icon="pi pi-plus" onClick={() => navigate('/products/create')} className="p-button-primary" />
         )}
       </div>
 
@@ -114,7 +114,7 @@ const Products = ({ toast }) => {
           <i className="pi pi-search" />
           <InputText
             type="text"
-            placeholder="Search products..."
+            placeholder="Buscar productos..."
             value={globalFilter}
             onChange={(e) => setGlobalFilter(e.target.value)}
             className="w-full"
@@ -129,7 +129,7 @@ const Products = ({ toast }) => {
             <Card title={product.name} className="product-card h-full">
               <div>
                 <p>{product.description}</p>
-                <p><strong>Price:</strong> ${product.price}</p>
+                <p><strong>Precio:</strong> ${product.price}</p>
                 {user && user.role === 'admin' && (
                   <div className="mt-4 flex justify-content-end">
                     <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-secondary mr-2" onClick={() => setEditingProduct(product)} />

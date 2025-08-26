@@ -30,23 +30,23 @@ const CreateProduct = ({ toast }) => {
 
   return (
     <div className="form-container flex justify-content-center align-items-center">
-      <Card title="Create Product" className="form-card w-full max-w-400">
+      <Card title="Crear Producto" className="form-card w-full max-w-400">
         <form onSubmit={handleCreate} className="p-fluid">
           <div className="field">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">Nombre</label>
             <InputText id="name" value={newProduct.name} onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })} required />
           </div>
           <div className="field">
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description">Descripción</label>
             <InputText id="description" value={newProduct.description} onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })} required />
           </div>
           <div className="field">
-            <label htmlFor="price">Price</label>
+            <label htmlFor="price">Precio</label>
             <InputNumber id="price" value={newProduct.price} onValueChange={(e) => setNewProduct({ ...newProduct, price: e.value })} mode="currency" currency="USD" locale="en-US" required />
           </div>
           <div className="flex justify-content-end mt-4">
-            <Button type="button" label="Cancel" className="p-button-secondary mr-2" onClick={() => navigate('/products')} />
-            <Button type="submit" label="Create Product" className="p-button-primary" />
+            <Button type="button" label="Cancelar" className="p-button-secondary mr-2" onClick={() => navigate('/products')} />
+            <Button type="submit" label="Crear Producto" className="p-button-primary" />
           </div>
         </form>
       </Card>

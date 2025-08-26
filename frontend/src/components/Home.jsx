@@ -21,14 +21,14 @@ const Home = () => {
 
   return (
     <div className="home-container flex justify-content-center align-items-center">
-      <Card title="Welcome to My App!" className="home-card w-full max-w-600 text-center">
-        <p className="mb-4">Connect with friends and the world around you on My App.</p>
+      <Card title="¡Bienvenido a Mi Aplicación!" className="home-card w-full max-w-600 text-center">
+        <p className="mb-4">Conéctate con amigos y el mundo que te rodea en Mi Aplicación.</p>
         <div className="flex justify-content-center gap-2">
           <Link to="/login">
-            <Button label="Login" className="p-button-primary" />
+            <Button label="Iniciar Sesión" className="p-button-primary" />
           </Link>
           <Link to="/register">
-            <Button label="Register" className="p-button-secondary" />
+            <Button label="Registrarse" className="p-button-secondary" />
           </Link>
         </div>
       </Card>

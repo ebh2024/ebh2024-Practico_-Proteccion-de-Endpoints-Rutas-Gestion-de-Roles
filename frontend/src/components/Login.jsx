@@ -30,26 +30,26 @@ const Login = ({ toast }) => {
 
   return (
     <div className="form-container flex justify-content-center align-items-center">
-      <Card title="Login" className="form-card w-full max-w-400">
+      <Card title="Iniciar Sesión" className="form-card w-full max-w-400">
         <form onSubmit={handleSubmit}>
           <div className="p-fluid">
             <div className="field">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">Nombre de Usuario</label>
               <InputText id="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
             </div>
             <div className="field">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Contraseña</label>
               <InputText id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
           </div>
-          <Button type="submit" label="Log In" className="p-button-primary mt-4 w-full" />
+          <Button type="submit" label="Iniciar Sesión" className="p-button-primary mt-4 w-full" />
         </form>
         <Divider align="center">
-          <span className="p-text-secondary">OR</span>
+          <span className="p-text-secondary">O</span>
         </Divider>
         <div className="text-center">
           <Link to="/register">
-            <Button label="Create New Account" className="p-button-success" style={{ backgroundColor: '#42b72a', borderColor: '#42b72a' }} />
+            <Button label="Crear Nueva Cuenta" className="p-button-success" style={{ backgroundColor: '#42b72a', borderColor: '#42b72a' }} />
           </Link>
         </div>
       </Card>

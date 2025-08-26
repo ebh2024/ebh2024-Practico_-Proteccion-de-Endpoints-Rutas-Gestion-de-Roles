@@ -28,29 +28,29 @@ const Navbar = () => {
   const start = (
     <div className="flex align-items-center">
       <Link to="/" className="p-menubar-start-logo" style={{ textDecoration: 'none', color: 'var(--facebook-blue)', fontSize: '1.5rem', fontWeight: 'bold', marginRight: '16px' }}>
-        My App
+        Mi Aplicación
       </Link>
       <span className="p-input-icon-left">
         <i className="pi pi-search" />
-        <InputText placeholder="Search App" className="p-inputtext-sm" style={{ borderRadius: '20px', paddingLeft: '2.5rem', backgroundColor: 'var(--facebook-gray-bg)', border: 'none' }} />
+        <InputText placeholder="Buscar Aplicación" className="p-inputtext-sm" style={{ borderRadius: '20px', paddingLeft: '2.5rem', backgroundColor: 'var(--facebook-gray-bg)', border: 'none' }} />
       </span>
     </div>
   );
 
   const centerItems = [
     {
-      label: 'Home',
+      label: 'Inicio',
       icon: 'pi pi-home',
       command: () => navigate('/')
     },
     ...(user ? [
       {
-        label: 'Products',
+        label: 'Productos',
         icon: 'pi pi-shopping-cart',
         command: () => navigate('/products')
       },
       {
-        label: 'Users',
+        label: 'Usuarios',
         icon: 'pi pi-users',
         command: () => navigate('/users')
       }
@@ -63,12 +63,12 @@ const Navbar = () => {
         <>
           <span className="mr-2" style={{ color: '#1c1e21', fontWeight: '600' }}>{user.name}</span>
           <Badge value={user.role} severity={user.role === 'admin' ? 'danger' : user.role === 'moderator' ? 'warning' : 'info'} style={{ marginRight: '8px' }} />
-          <Button onClick={handleLogout} className="p-button p-button-secondary" label="Logout" />
+          <Button onClick={handleLogout} className="p-button p-button-secondary" label="Cerrar Sesión" />
         </>
       ) : (
         <>
-          <Button onClick={() => navigate('/login')} className="p-button p-button-primary mr-2" label="Login" />
-          <Button onClick={() => navigate('/register')} className="p-button p-button-secondary" label="Register" />
+          <Button onClick={() => navigate('/login')} className="p-button p-button-primary mr-2" label="Iniciar Sesión" />
+          <Button onClick={() => navigate('/register')} className="p-button p-button-secondary" label="Registrarse" />
         </>
       )}
     </div>

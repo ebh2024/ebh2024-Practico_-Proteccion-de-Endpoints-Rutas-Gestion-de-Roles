@@ -52,16 +52,16 @@ const Users = ({ toast }) => {
 
   const roleEditor = (rowData) => {
     const roles = [
-      { label: 'User', value: 'user' },
-      { label: 'Admin', value: 'admin' },
-      { label: 'Moderator', value: 'moderator' }
+      { label: 'Usuario', value: 'user' },
+      { label: 'Administrador', value: 'admin' },
+      { label: 'Moderador', value: 'moderator' }
     ];
     return (
       <Dropdown
         value={rowData.role}
         options={roles}
         onChange={(e) => handleRoleChange(rowData.id, e.value)}
-        placeholder="Select a Role"
+        placeholder="Seleccionar Rol"
       />
     );
   };
@@ -70,7 +70,7 @@ const Users = ({ toast }) => {
     <div className="table-header">
       <span className="p-input-icon-left w-full">
         <i className="pi pi-search" />
-        <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." className="w-full" />
+        <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Buscar..." className="w-full" />
       </span>
     </div>
   );
@@ -78,13 +78,13 @@ const Users = ({ toast }) => {
   return (
     <div className="p-4">
       <div className="flex justify-content-between align-items-center mb-4">
-        <h2 className="text-2xl font-bold">User Management</h2>
+        <h2 className="text-2xl font-bold">Gestión de Usuarios</h2>
       </div>
       <Card className="p-card">
-        <DataTable value={users} paginator rows={10} header={header} globalFilter={globalFilter} emptyMessage="No users found.">
+        <DataTable value={users} paginator rows={10} header={header} globalFilter={globalFilter} emptyMessage="No se encontraron usuarios.">
           <Column field="id" header="ID" sortable />
-          <Column field="username" header="Username" sortable />
-          <Column field="role" header="Role" body={roleEditor} />
+          <Column field="username" header="Nombre de Usuario" sortable />
+          <Column field="role" header="Rol" body={roleEditor} />
         </DataTable>
       </Card>
     </div>

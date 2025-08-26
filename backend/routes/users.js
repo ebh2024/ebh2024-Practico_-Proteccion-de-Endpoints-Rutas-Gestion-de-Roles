@@ -16,10 +16,10 @@ router.get('/', authenticateToken, authorizeRole(['admin']), async (req, res) =>
 router.put('/:id/role', authenticateToken, authorizeRole(['admin']), async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id);
-    if (!user) return res.status(404).send('Usuario no encontrado');
+    if (!user) return res.status(404).send('User not found');
     user.role = req.body.role;
     await user.save();
-    res.send('Rol de usuario actualizado');
+    res.send('User role updated');
   } catch (error) {
     res.status(400).send(error.message);
   }
