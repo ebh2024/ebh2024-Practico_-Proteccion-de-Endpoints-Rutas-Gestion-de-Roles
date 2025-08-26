@@ -32,7 +32,7 @@ const Navbar = () => {
       </Link>
       <span className="p-input-icon-left">
         <i className="pi pi-search" />
-        <InputText placeholder="Buscar Aplicación" className="p-inputtext-sm" style={{ borderRadius: '20px', paddingLeft: '2.5rem', backgroundColor: 'var(--facebook-gray-bg)', border: 'none' }} />
+        <InputText placeholder="Buscar..." className="p-inputtext-sm" style={{ borderRadius: '20px', paddingLeft: '3.5rem', backgroundColor: 'var(--facebook-gray-bg)', border: 'none' }} />
       </span>
     </div>
   );

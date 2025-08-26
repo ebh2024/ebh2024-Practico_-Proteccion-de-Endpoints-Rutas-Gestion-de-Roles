@@ -270,6 +270,11 @@ body {
   padding-left: 2.5rem;
 }
 
+/* Adjust icon position in Navbar search input */
+.p-menubar .p-input-icon-left > i {
+  left: 1rem !important; /* Adjust this value as needed */
+}
+
 .error-message {
   color: #f44336;
   font-weight: 600;
