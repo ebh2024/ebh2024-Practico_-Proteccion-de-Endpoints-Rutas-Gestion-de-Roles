@@ -18,7 +18,7 @@ router.get('/', authenticateToken, async (req, res) => {
  * Ruta POST para crear un nuevo producto.
  * Requiere autenticación y que el usuario tenga el rol de 'admin'.
  */
-router.post('/', authenticateToken, authorizeRole(['admin']), async (req, res) => {
+router.post('/', authenticateToken, authorizeRole(['admin', 'moderator']), async (req, res) => {
   try {
     // Crea un nuevo producto con los datos proporcionados en el cuerpo de la solicitud
     const product = await Product.create(req.body);
@@ -32,7 +32,7 @@ router.post('/', authenticateToken, authorizeRole(['admin']), async (req, res) =
  * Ruta PUT para actualizar un producto existente por su ID.
  * Requiere autenticación y que el usuario tenga el rol de 'admin'.
  */
-router.put('/:id', authenticateToken, authorizeRole(['admin']), async (req, res) => {
+router.put('/:id', authenticateToken, authorizeRole(['admin', 'moderator']), async (req, res) => {
   try {
     // Busca el producto por su ID
     const product = await Product.findByPk(req.params.id);
@@ -50,7 +50,7 @@ router.put('/:id', authenticateToken, authorizeRole(['admin']), async (req, res)
  * Ruta DELETE para eliminar un producto por su ID.
  * Requiere autenticación y que el usuario tenga el rol de 'admin'.
  */
-router.delete('/:id', authenticateToken, authorizeRole(['admin']), async (req, res) => {
+router.delete('/:id', authenticateToken, authorizeRole(['admin', 'moderator']), async (req, res) => {
   try {
     // Busca el producto por su ID
     const product = await Product.findByPk(req.params.id);

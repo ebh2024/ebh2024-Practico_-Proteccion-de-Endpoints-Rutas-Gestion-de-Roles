@@ -4,10 +4,10 @@ Este es un proyecto de aplicación web full-stack que incluye un backend con Nod
 
 ## Características
 
-- **Gestión de Productos**: Crear, leer, actualizar y eliminar productos.
+- **Gestión de Productos**: Crear, leer, actualizar y eliminar productos (accesible para `admin` y `moderator`).
 - **Gestión de Usuarios**: Ver la lista de usuarios y gestionar sus roles.
 - **Autenticación por Token**: Sistema de registro y login que genera un JWT para autenticar las solicitudes.
-- **Autorización por Roles**: Rutas protegidas que solo permiten el acceso a usuarios con roles específicos (ej. `admin`).
+- **Autorización por Roles**: Rutas protegidas que solo permiten el acceso a usuarios con roles específicos (ej. `admin`, `moderator`).
 - **Frontend Reactivo**: Interfaz de usuario construida con React y PrimeReact para una experiencia de usuario moderna.
 
 ## Tecnologías Utilizadas
@@ -67,9 +67,9 @@ La aplicación se abrirá en `http://localhost:5173`.
 
 ### Productos (`/products`)
 - `GET /`: Obtiene todos los productos (requiere autenticación).
-- `POST /`: Crea un nuevo producto (requiere rol de `admin`).
-- `PUT /:id`: Actualiza un producto existente (requiere rol de `admin`).
-- `DELETE /:id`: Elimina un producto (requiere rol de `admin`).
+- `POST /`: Crea un nuevo producto (requiere rol de `admin` o `moderator`).
+- `PUT /:id`: Actualiza un producto existente (requiere rol de `admin` o `moderator`).
+- `DELETE /:id`: Elimina un producto (requiere rol de `admin` o `moderator`).
 
 ### Usuarios (`/users`)
 - `GET /`: Obtiene todos los usuarios (requiere rol de `admin`).
