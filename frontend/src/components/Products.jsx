@@ -6,7 +6,7 @@ import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Dialog } from 'primereact/dialog';
 
 /**
@@ -16,11 +16,16 @@ import { Dialog } from 'primereact/dialog';
  * @param {object} props.toast - Referencia al componente Toast para mostrar notificaciones.
  */
 const Products = ({ toast }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  // Obtiene el término de búsqueda de los parámetros de la URL
+  const queryParams = new URLSearchParams(location.search);
+  const initialSearchTerm = queryParams.get('search') || '';
+
   // Estados para almacenar la lista de productos, el producto en edición y el filtro de búsqueda global
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
-  const [globalFilter, setGlobalFilter] = useState('');
-  const navigate = useNavigate();
+  const [globalFilter, setGlobalFilter] = useState(initialSearchTerm);
 
   // Obtiene el token de sesión y decodifica la información del usuario
   const token = sessionStorage.getItem('token');
@@ -53,10 +58,17 @@ const Products = ({ toast }) => {
     }
   };
 
-  // Efecto para cargar los productos al montar el componente
+  // Efecto para cargar los productos al montar el componente y cuando cambia el filtro global
   useEffect(() => {
     fetchProducts();
-  }, []); // Se ejecuta solo una vez al montar el componente
+  }, [globalFilter]); // Se ejecuta al montar y cuando cambia el filtro global
+
+  // Efecto para actualizar el filtro global cuando cambia el parámetro de búsqueda en la URL
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = queryParams.get('search') || '';
+    setGlobalFilter(searchTermFromUrl);
+  }, [location.search]);
 
   /**
    * Maneja la actualización de un producto existente.
@@ -142,7 +154,8 @@ const Products = ({ toast }) => {
         )}
       </div>
 
-      {/* Campo de búsqueda global para productos */}
+      {/* Campo de búsqueda global para productos (ahora controlado por el Navbar) */}
+      {/* Este InputText se mantiene para la visualización del filtro actual, pero la entrada principal viene del Navbar */}
       <div className="mb-4">
         <span className="p-input-icon-left w-full">
           <i className="pi pi-search" />
@@ -150,7 +163,7 @@ const Products = ({ toast }) => {
             type="text"
             placeholder="Buscar productos..."
             value={globalFilter}
-            onChange={(e) => setGlobalFilter(e.target.value)}
+            onChange={(e) => setGlobalFilter(e.target.value)} // Permite la búsqueda local si el usuario edita aquí
             className="w-full"
             style={{ borderRadius: '20px', paddingLeft: '2.5rem', backgroundColor: 'var(--facebook-white)', border: '1px solid var(--facebook-light-gray)' }}
           />
