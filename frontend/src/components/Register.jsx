@@ -7,22 +7,42 @@ import { Card } from 'primereact/card';
 import { Divider } from 'primereact/divider';
 import { Link } from 'react-router-dom';
 
+/**
+ * Componente de registro de usuario (Register).
+ * Permite a los nuevos usuarios crear una cuenta en la aplicación.
+ * @param {object} props - Las propiedades del componente.
+ * @param {object} props.toast - Referencia al componente Toast para mostrar notificaciones.
+ */
 const Register = ({ toast }) => {
+  // Estados para almacenar el nombre de usuario y la contraseña
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  /**
+   * Muestra una notificación Toast.
+   * @param {string} severity - La severidad de la notificación (ej. 'success', 'error').
+   * @param {string} summary - El resumen o título de la notificación.
+   * @param {string} detail - El mensaje detallado de la notificación.
+   */
   const showToast = (severity, summary, detail) => {
     toast.current.show({ severity, summary, detail, life: 3000 });
   };
 
+  /**
+   * Maneja el envío del formulario de registro.
+   * @param {Event} e - El evento de envío del formulario.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Envía una solicitud POST a la API para registrar un nuevo usuario
       await axios.post('http://localhost:3000/auth/register', { username, password });
       showToast('success', 'Registro Exitoso', 'Usuario registrado correctamente.');
+      // Redirige a la página de inicio de sesión después de un registro exitoso
       setTimeout(() => navigate('/login'), 1000);
     } catch (error) {
+      // Muestra un mensaje de error si el registro falla
       showToast('error', 'Error de Registro', error.response?.data || 'Fallo el registro. El usuario ya podría existir.');
     }
   };

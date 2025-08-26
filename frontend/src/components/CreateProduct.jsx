@@ -6,24 +6,46 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 
+/**
+ * Componente para crear un nuevo producto.
+ * Permite a los usuarios ingresar el nombre, descripción y precio de un producto
+ * y enviarlo a la API para su creación.
+ * @param {object} props - Las propiedades del componente.
+ * @param {object} props.toast - Referencia al componente Toast para mostrar notificaciones.
+ */
 const CreateProduct = ({ toast }) => {
+  // Estado para almacenar los datos del nuevo producto
   const [newProduct, setNewProduct] = useState({ name: '', description: '', price: '' });
   const navigate = useNavigate();
+  // Obtiene el token de autenticación del almacenamiento de sesión
   const token = sessionStorage.getItem('token');
 
+  /**
+   * Muestra una notificación Toast.
+   * @param {string} severity - La severidad de la notificación (ej. 'success', 'error').
+   * @param {string} summary - El resumen o título de la notificación.
+   * @param {string} detail - El mensaje detallado de la notificación.
+   */
   const showToast = (severity, summary, detail) => {
     toast.current.show({ severity, summary, detail, life: 3000 });
   };
 
+  /**
+   * Maneja el envío del formulario para crear un producto.
+   * @param {Event} e - El evento de envío del formulario.
+   */
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
+      // Envía una solicitud POST a la API para crear el producto
       await axios.post('http://localhost:3000/products', newProduct, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` } // Incluye el token de autorización
       });
       showToast('success', 'Producto Creado', 'Producto creado correctamente.');
+      // Redirige a la página de productos después de la creación exitosa
       navigate('/products');
     } catch (error) {
+      // Muestra un mensaje de error si la creación del producto falla
       showToast('error', 'Error al Crear Producto', error.response?.data?.message || 'Fallo al crear el producto.');
     }
   };

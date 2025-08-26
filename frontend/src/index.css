@@ -1,9 +1,9 @@
 :root {
-  --app-primary-blue: #3f51b5; /* A different shade of blue */
-  --app-background-gray: #e8eaf6; /* Lighter background */
-  --app-text-dark: #303f9f; /* Darker text for contrast */
-  --app-light-gray: #c5cae9; /* Lighter gray for borders/hover */
-  --app-dark-gray: #9fa8da; /* Darker gray for hover */
+  --app-primary-blue: #3f51b5;
+  --app-background-gray: #e8eaf6;
+  --app-text-dark: #303f9f;
+  --app-light-gray: #c5cae9;
+  --app-dark-gray: #9fa8da;
   --app-white: #ffffff;
   --border-radius-small: 4px;
   --border-radius-medium: 8px;
@@ -24,7 +24,6 @@ body {
   margin: 0 auto;
 }
 
-/* Navbar styles */
 .p-menubar {
   background-color: var(--app-white) !important;
   border: none !important;
@@ -86,11 +85,15 @@ body {
 }
 
 .p-menubar .p-menubar-end .p-badge {
-  background-color: var(--app-primary-blue);
   color: var(--app-white);
-  font-size: 0.75rem;
-  padding: 0.25em 0.5em;
-  border-radius: 10px;
+  font-size: 1rem; /* Adjusted to match button font size */
+  padding: 8px 12px; /* Adjusted to match button padding */
+  border-radius: var(--border-radius-medium); /* Adjusted to match button border-radius */
+  font-weight: 600; /* Added to match button font-weight */
+  display: flex; /* Added for centering content */
+  align-items: center; /* Added for centering content */
+  justify-content: center; /* Added for centering content */
+  min-width: 100px; /* Added to give it a similar width to the button */
 }
 
 .p-menubar .p-menubar-end .p-button {
@@ -107,7 +110,6 @@ body {
   background-color: var(--app-dark-gray);
 }
 
-/* Card styles */
 .p-card {
   background-color: var(--app-white);
   border-radius: var(--border-radius-medium);
@@ -126,12 +128,11 @@ body {
   padding: 0;
 }
 
-/* Form styles */
 .form-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 56px); /* Adjust for navbar height */
+  min-height: calc(100vh - 56px);
   padding: 20px;
   background-color: var(--app-background-gray);
 }
@@ -182,7 +183,7 @@ body {
 }
 
 .p-button:hover {
-  background-color: #3949ab; /* Darker blue on hover */
+  background-color: #3949ab;
 }
 
 .p-button-secondary {
@@ -195,7 +196,7 @@ body {
 }
 
 .p-button-success {
-  background-color: #4caf50; /* Green for success */
+  background-color: #4caf50;
   border-color: #4caf50;
 }
 
@@ -205,19 +206,18 @@ body {
 }
 
 .p-button-danger {
-  background-color: #f44336; /* Red for danger */
+  background-color: #f44336;
 }
 
 .p-button-danger:hover {
   background-color: #e53935;
 }
 
-/* Home container */
 .home-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 56px); /* Adjust for navbar height */
+  min-height: calc(100vh - 56px);
   background-color: var(--app-background-gray);
 }
 
@@ -231,7 +231,6 @@ body {
   color: var(--app-text-dark);
 }
 
-/* Products specific styles */
 .product-card {
   padding: 20px;
 }
@@ -253,7 +252,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* Users specific styles */
 .table-header {
   display: flex;
   justify-content: flex-end;
@@ -270,9 +268,12 @@ body {
   padding-left: 2.5rem;
 }
 
-/* Adjust icon position in Navbar search input */
+.table-header .p-input-icon-left > i {
+  left: 0.75rem !important;
+}
+
 .p-menubar .p-input-icon-left > i {
-  left: 1rem !important; /* Adjust this value as needed */
+  left: 1rem !important;
 }
 
 .error-message {
@@ -280,7 +281,6 @@ body {
   font-weight: 600;
 }
 
-/* PrimeReact overrides for better App look */
 .p-toast .p-toast-message {
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius-medium);
@@ -381,18 +381,21 @@ body {
 }
 
 .p-badge.p-badge-danger {
-  background-color: #f44336; /* Admin */
+  background-color: #f44336;
 }
 
 .p-badge.p-badge-warning {
-  background-color: #ffc107; /* Moderator */
+  background-color: #ffc107;
 }
 
 .p-badge.p-badge-info {
-  background-color: #2196f3; /* User */
+  background-color: #2196f3;
 }
 
-/* Flexbox utilities for PrimeReact components */
+.mb-4 .p-input-icon-left > i {
+  left: 0.75rem !important;
+}
+
 .flex { display: flex; }
 .justify-content-center { justify-content: center; }
 .align-items-center { align-items: center; }
