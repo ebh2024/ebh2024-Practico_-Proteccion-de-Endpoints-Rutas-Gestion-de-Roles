@@ -137,7 +137,7 @@ const Products = ({ toast }) => {
       <div className="flex justify-content-between align-items-center mb-4">
         <h2 className="text-2xl font-bold">Productos</h2>
         {/* Botón para crear producto, visible solo para administradores */}
-        {user && user.role === 'admin' && (
+        {user && (user.role === 'admin' || user.role === 'moderator') && (
           <Button label="Crear Producto" icon="pi pi-plus" onClick={() => navigate('/products/create')} className="p-button-primary" />
         )}
       </div>
@@ -165,8 +165,8 @@ const Products = ({ toast }) => {
               <div>
                 <p>{product.description}</p>
                 <p><strong>Precio:</strong> ${product.price}</p>
-                {/* Botones de editar y eliminar, visibles solo para administradores */}
-                {user && user.role === 'admin' && (
+                {/* Botones de editar y eliminar, visibles solo para administradores y moderadores */}
+                {user && (user.role === 'admin' || user.role === 'moderator') && (
                   <div className="mt-4 flex justify-content-end">
                     <Button icon="pi pi-pencil" className="p-button-rounded p-button-text p-button-secondary mr-2" onClick={() => setEditingProduct(product)} />
                     <Button icon="pi pi-trash" className="p-button-rounded p-button-text p-button-danger" onClick={() => handleDelete(product.id)} />
